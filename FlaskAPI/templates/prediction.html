@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block content %}
+	<br><br>
+	<div class="container">
+		<div class="row text-center">
+			<h1 class="predicted-title">Predicted Data Science Salary is 
+				<span class="text-success font-weight-bold">
+					$ {{results}}
+					{% if hourly_yn == 1 %}
+						hourly
+					{% else %}
+						k
+					{% endif %}
+				</span>.
+			</h1>
+		</div>
+		<div class="row">
+			<a href="{{ url_for('index') }}" class="btn home-btn" role='button'>Try for a new Job</a>
+		</div>
+	</div>
+	<br><br>
+{% endblock content %}

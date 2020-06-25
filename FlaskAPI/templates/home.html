@@ -1,0 +1,286 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="container" id="form-design">
+        <form  method="POST">
+            {# This hidden_tag is a CSRF security feature. #}
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Please enter details of job</legend>
+                <div id="errors">
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                        {% if messages %}
+                          {% for category, message in messages %}
+                            <div class="alert alert-{{ category }}">
+                              {{ message }}
+                            </div>
+                          {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        {{ form.job_simp.label(class="form-control-label") }}
+                        {% if form.job_simp.errors %}
+                            {{ form.job_simp(class="form-control form-control-lg is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.job_simp.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.job_simp(class="form-control form-control-lg") }}
+                        {% endif %}
+                    </div>
+                    <div class="form-group col-md-6">
+                        {{ form.seniority.label(class="form-control-label") }}
+                        {% if form.seniority.errors %}
+                            {{ form.seniority(class="form-control form-control-lg is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.seniority.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.seniority(class="form-control form-control-lg") }}
+                        {% endif %}
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        {{ form.job_state.label(class="form-control-label") }}
+                        {% if form.job_state.errors %}
+                            {{ form.job_state(class="form-control form-control-lg is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.job_state.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.job_state(class="form-control form-control-lg") }}
+                        {% endif %}
+                    </div>
+                    <div class="form-group col-md-4">
+                        {{ form.same_state.label(class="form-control-label") }}
+                        {% if form.same_state.errors %}
+                            {{ form.same_state(class="form-control form-control-lg is-invalid form-check form-check-inline") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.same_state.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.same_state(class="form-control form-control-lg form-check form-check-inline") }}
+                        {% endif %}
+                    </div>
+                    <div class="form-group col-md-4">
+                        {{ form.hourly.label(class="form-control-label") }}
+                        {% if form.hourly.errors %}
+                            {{ form.hourly(class="form-control form-control-lg is-invalid form-check form-check-inline") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.hourly.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.hourly(class="form-control form-control-lg form-check form-check-inline") }}
+                        {% endif %}
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        {{ form.desc.label(class="form-control-label") }}
+                        {% if form.desc.errors %}
+                            {{ form.desc(class="form-control form-control-lg is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.desc.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.desc(class="form-control form-control-lg") }}
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        {{ form.python_yn.label(class="form-control-label") }}
+                        {% if form.python_yn.errors %}
+                            {{ form.python_yn(class="form-control form-control-lg is-invalid form-check form-check-inline") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.python_yn.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.python_yn(class="form-control form-control-lg form-check form-check-inline") }}
+                        {% endif %}
+                    </div>
+                    <div class="form-group col-md-3">
+                        {{ form.spark.label(class="form-control-label") }}
+                        {% if form.spark.errors %}
+                            {{ form.spark(class="form-control form-control-lg is-invalid form-check form-check-inline") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.spark.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.spark(class="form-control form-control-lg form-check form-check-inline") }}
+                        {% endif %}
+                    </div>
+                    <div class="form-group col-md-3">
+                        {{ form.aws.label(class="form-control-label") }}
+                        {% if form.aws.errors %}
+                            {{ form.aws(class="form-control form-control-lg is-invalid form-check form-check-inline") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.aws.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.aws(class="form-control form-control-lg form-check form-check-inline") }}
+                        {% endif %}
+                    </div>
+                    <div class="form-group col-md-3">
+                        {{ form.excel.label(class="form-control-label") }}
+                        {% if form.excel.errors %}
+                            {{ form.excel(class="form-control form-control-lg is-invalid form-check form-check-inline") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.excel.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.excel(class="form-control form-control-lg form-check form-check-inline") }}
+                        {% endif %}
+                    </div>
+                </div>
+
+                <legend class="border-bottom mb-4">
+                    Please enter details of company
+                    <span class="text-muted" style="font-size: 1rem;">(Check Glassdoor for exact values, if unsure)</span>
+                </legend>
+
+                
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        {{ form.age.label(class="form-control-label") }}
+                        {% if form.age.errors %}
+                            {{ form.age(class="form-control form-control-lg is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.age.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.age(class="form-control form-control-lg") }}
+                        {% endif %}
+                    </div>
+                    <div class="form-group col-md-4">
+                        {{ form.num_comp.label(class="form-control-label") }}
+                        {% if form.num_comp.errors %}
+                            {{ form.num_comp(class="form-control form-control-lg is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.num_comp.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.num_comp(class="form-control form-control-lg") }}
+                        {% endif %}
+                    </div>
+                    <div class="form-group col-md-4">
+                        {{ form.Rating.label(class="form-control-label") }}
+                        {% if form.Rating.errors %}
+                            {{ form.Rating(class="form-control form-control-lg is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.Rating.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.Rating(class="form-control form-control-lg") }}
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        {{ form.size.label(class="form-control-label") }}
+                        {% if form.size.errors %}
+                            {{ form.size(class="form-control form-control-lg is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.size.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.size(class="form-control form-control-lg") }}
+                        {% endif %}
+                    </div>
+                    <div class="form-group col-md-4">
+                        {{ form.Revenue.label(class="form-control-label") }}
+                        {% if form.Revenue.errors %}
+                            {{ form.Revenue(class="form-control form-control-lg is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.Revenue.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.Revenue(class="form-control form-control-lg") }}
+                        {% endif %}
+                    </div>
+                    <div class="form-group col-md-4">
+                        {{ form.type_of_ownership.label(class="form-control-label") }}
+                        {% if form.type_of_ownership.errors %}
+                            {{ form.type_of_ownership(class="form-control form-control-lg is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.type_of_ownership.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.type_of_ownership(class="form-control form-control-lg") }}
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        {{ form.Industry.label(class="form-control-label") }}
+                        {% if form.Industry.errors %}
+                            {{ form.Industry(class="form-control form-control-lg is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.Industry.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.Industry(class="form-control form-control-lg") }}
+                        {% endif %}
+                    </div>
+                    <div class="form-group col-md-6">
+                        {{ form.Sector.label(class="form-control-label") }}
+                        {% if form.Sector.errors %}
+                            {{ form.Sector(class="form-control form-control-lg is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.Sector.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.Sector(class="form-control form-control-lg") }}
+                        {% endif %}
+                    </div>
+                </div>
+            </fieldset>
+            <div class="form-group">
+                {{ form.submit(class="btn") }}
+            </div>
+        </form>
+    </div>
+{% endblock content %}

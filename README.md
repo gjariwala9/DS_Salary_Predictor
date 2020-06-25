@@ -77,4 +77,11 @@ The Random Forest model far outperformed the other approaches on the test and va
 *	**Ridge Regression**: MAE = 19.67
 
 ## Productionization 
-In this step, I built a flask API endpoint that was hosted on a local webserver by following along with the TDS tutorial in the reference section above. The API endpoint takes in a request with a list of values from a job listing and returns an estimated salary. 
+In this step, I built a flask API endpoint that is hosted on a heroku webserver. The API endpoint takes list of values from user and returns an estimated salary. 
+
+**Application Link:** http://data-science-salary-predictor.herokuapp.com/
+
+![alt text](https://github.com/gjariwala9/DS_Salary_Predictor/blob/master/README_IMG/form.png "Job details form")
+
+![alt text](https://github.com/gjariwala9/DS_Salary_Predictor/blob/master/README_IMG/predicted.png "Salary Prediction")
+
